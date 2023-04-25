@@ -94,5 +94,3 @@ const FormBuilder = () => {
     </Container>
   );
 };
-
-export default FormBuilder;
