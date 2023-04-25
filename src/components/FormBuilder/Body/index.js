@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Form, FormControl, Button } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import { FormBuilderBodyLabel } from './Label';
 import { FormBuilderBodyInputs } from './Inputs';
 
@@ -36,7 +36,12 @@ export const FormBuilderBody = ({ formFields, setFormFields }) => {
             setLabelFieldEdit={setLabelFieldEdit}
             handleEditField={handleEditField}
           />
-          <FormBuilderBodyInputs field={field} key={index} index={index} handleRemoveField={handleRemoveField} />
+          <FormBuilderBodyInputs
+            key={index}
+            field={field}
+            index={index}
+            handleRemoveField={handleRemoveField}
+          />
         </Form.Group>
       )) : null}
     </>
