@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Form, Button, Container, Row, Col, FormControl } from 'react-bootstrap';
-import { FormBuilderHeader } from './FormBuilder/Header';
-import { FormBuilderBody } from './FormBuilder/Body';
+import { Form, Container, Row, Col, } from 'react-bootstrap';
+import { FormBuilderHeader } from './Header';
+import { FormBuilderBody } from './Body';
 
 const FormBuilder = () => {
   const [formFields, setFormFields] = useState([]);
