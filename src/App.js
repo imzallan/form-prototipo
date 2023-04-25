@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import CardForm from "./CardForm"
+import CardForm from "./components/CardForm"
 
 function App() {
   return (
