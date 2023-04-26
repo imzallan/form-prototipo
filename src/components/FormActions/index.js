@@ -6,7 +6,13 @@ import {
 } from "reactstrap";
 import { Card } from "react-bootstrap";
 
-export const FormActions = () => {
+export const FormActions = ({
+  forms,
+  activePage,
+  handlePageChange,
+  handleAddForm,
+  handleRemoveForm
+}) => {
   return (
     <Card.Footer>
       <div className="d-flex justify-content-between align-items-center">

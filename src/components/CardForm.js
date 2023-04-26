@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import {
   CardBody,
-  Button,
-  Pagination,
-  PaginationItem,
-  PaginationLink
 } from "reactstrap";
 import { Card } from "react-bootstrap";
 import FormBuilder from "./FormBuilder";
+
+import { FormActions } from "./FormActions";
 
 const CardForm = () => {
   const [forms, setForms] = useState([
@@ -43,15 +41,13 @@ const CardForm = () => {
     <Card>
       <Card.Header>APSV Formulários</Card.Header>
       <CardBody>{renderForm(activePage - 1)}</CardBody>
-      <Card.Footer>
-        <div className="d-flex justify-content-between align-items-center">
-          <Button onClick={handleAddForm}>Add Form</Button>
-          <Pagination>
-            {forms.map((form, index) => (<PaginationItem key={form.id} active={index + 1 === activePage}><PaginationLink onClick={() => handlePageChange(index + 1)}>{index + 1}</PaginationLink></PaginationItem>))}
-          </Pagination>
-          {forms.length > 1 && (<Button onClick={() => handleRemoveForm(activePage - 1)}>Remove Form</Button>)}
-        </div>
-      </Card.Footer>
+      <FormActions
+        forms={forms}
+        activePage={activePage}
+        handlePageChange={handlePageChange}
+        handleAddForm={handleAddForm}
+        handleRemoveForm={handleRemoveForm}
+      />
     </Card>
   );
 };
