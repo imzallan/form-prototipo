@@ -47,6 +47,7 @@ const CardForm = () => {
         handlePageChange={handlePageChange}
         handleAddForm={handleAddForm}
         handleRemoveForm={handleRemoveForm}
+        setForms={setForms}
       />
     </Card>
   );

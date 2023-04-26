@@ -6,17 +6,21 @@ import {
 } from "reactstrap";
 import { Card } from "react-bootstrap";
 
+import { ButtonAddForm } from "./Buttons/AddForm";
+
 export const FormActions = ({
   forms,
   activePage,
   handlePageChange,
   handleAddForm,
-  handleRemoveForm
+  handleRemoveForm,
+  setForms,
 }) => {
   return (
     <Card.Footer>
       <div className="d-flex justify-content-between align-items-center">
-        <Button onClick={handleAddForm}>Add Form</Button>
+        <ButtonAddForm forms={forms} setForms={setForms} />
+        {/* <Button onClick={handleAddForm}>Add Form</Button> */}
         <Pagination>
           {forms.map((form, index) => (<PaginationItem key={form.id} active={index + 1 === activePage}><PaginationLink onClick={() => handlePageChange(index + 1)}>{index + 1}</PaginationLink></PaginationItem>))}
         </Pagination>
