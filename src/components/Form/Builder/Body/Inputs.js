@@ -1,6 +1,6 @@
 import { Button } from "react-bootstrap";
 
-import { FormInputsType } from "../../../models/FormBuilder/Input";
+import { FormInputsType } from "../../../../models/Form/Builder/Input";
 
 export const FormBuilderBodyInputs = ({ field, index, handleRemoveField }) => {
   return (

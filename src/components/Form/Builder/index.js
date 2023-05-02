@@ -3,7 +3,7 @@ import { Form, Container, Row, Col, } from 'react-bootstrap';
 import { FormBuilderHeader } from './Header';
 import { FormBuilderBody } from './Body';
 
-const FormBuilder = () => {
+export const FormBuilder = () => {
   const [formFields, setFormFields] = useState([]);
 
   return (
@@ -19,5 +19,3 @@ const FormBuilder = () => {
     </Container>
   );
 };
-
-export default FormBuilder;

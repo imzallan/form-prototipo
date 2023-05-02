@@ -1,6 +1,6 @@
 import { Dropdown, DropdownButton } from "react-bootstrap";
 
-import { FormFieldsType } from "../../models/FormBuilder/Field";
+import { FormFieldsType } from "../../../../models/Form/Builder/Field";
 
 export const FormBuilderHeader = ({ formFields, setFormFields }) => {
   const handleAddField = (fieldType) => () => {
