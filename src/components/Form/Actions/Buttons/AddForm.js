@@ -1,5 +1,5 @@
 import { Button } from "reactstrap";
-import FormBuilder from "../../FormBuilder";
+import { FormBuilder } from "../../../Form/Builder";
 
 export const ButtonAddForm = ({
   forms,
