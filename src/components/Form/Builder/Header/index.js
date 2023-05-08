@@ -2,9 +2,14 @@ import { Dropdown, DropdownButton } from "react-bootstrap";
 
 import { FormFieldsType } from "../../../../models/Form/Builder/Field";
 
-export const FormBuilderHeader = ({ formFields, setFormFields }) => {
+import { useFormContext } from "../../../../providers/hooks/useFormContext";
+
+export const FormBuilderHeader = () => {
+  const { handleAddFields } = useFormContext();
+
   const handleAddField = (fieldType) => () => {
-    setFormFields(prevFormFields => [...prevFormFields, FormFieldsType[fieldType]]);
+    const newField = FormFieldsType[fieldType];
+    return handleAddFields(newField);
   };
 
   return (
@@ -15,7 +20,12 @@ export const FormBuilderHeader = ({ formFields, setFormFields }) => {
     >
       {
         Object.keys(FormFieldsType).map((fieldType, index) => (
-          <Dropdown.Item key={index} onClick={handleAddField(fieldType)}>{fieldType}</Dropdown.Item>
+          <Dropdown.Item
+            key={index}
+            onClick={handleAddField(fieldType)}
+          >
+            {fieldType}
+          </Dropdown.Item>
         ))
       }
     </DropdownButton>
