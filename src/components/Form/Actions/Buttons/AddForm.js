@@ -1,25 +1,32 @@
 import { Button } from "reactstrap";
-import { FormBuilder } from "../../../Form/Builder";
+import { useFormContext } from "../../../../providers/hooks/useFormContext";
 
-export const ButtonAddForm = ({
-  forms,
-  setForms
-}) => {
-  const lastId = forms.length > 0 ? forms[forms.length - 1].id : 0;
-  const handleAddForm = () => {
-    setForms((currentForms) => {
-      const id = currentForms.length > 0 ? lastId + 1 : 1;
-      return [
-        ...currentForms,
-        {
-          id,
-          form: <FormBuilder key={id} />
-        }
-      ]
-    });
-  };
+export const ButtonAddForm = () => {
+  const {
+    handleAddForms,
+    forms,
+    activePage,
+  } = useFormContext();
+
+  const handleButtonDisabled = () => {
+    if (forms[activePage - 1]?.fields?.length === 0) {
+      return true;
+    }
+
+    if (forms[activePage]?.fields?.length === 0) {
+      return true;
+    }
+
+    return false;
+  }
 
   return (
-    <Button onClick={handleAddForm}>Add Form</Button>
+    <Button
+      color={handleButtonDisabled() ? 'secondary' : 'success'}
+      disabled={handleButtonDisabled()}
+      onClick={() => handleAddForms()}
+    >
+      Add Form
+    </Button>
   );
 }
