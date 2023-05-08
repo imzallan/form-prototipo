@@ -15,7 +15,7 @@ export const FormPagination = () => {
 
   return (
     <Pagination>
-      {forms.map((form, index) => (
+      {forms?.map((form, index) => (
         <PaginationItem
           key={form.id}
           active={index + 1 === activePage}

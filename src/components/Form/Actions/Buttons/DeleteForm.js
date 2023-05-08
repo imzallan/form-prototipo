@@ -8,10 +8,18 @@ export const ButtonDeleteForm = () => {
     forms,
   } = useFormContext();
 
+  const handleButttonDisabled = () => {
+    if (forms[0]?.fields?.length === 0 && forms.length === 1) {
+      return true;
+    }
+
+    return false;
+  }
+
   return (
     <Button
-      disabled={forms[0].fields.length === 0}
-      color={forms[0].fields.length === 0 ? "secondary" : "danger"}
+      disabled={handleButttonDisabled()}
+      color={handleButttonDisabled() ? "secondary" : "danger"}
       onClick={() => handleDeleteForm()}
     >
       Remove Form

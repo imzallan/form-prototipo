@@ -6,6 +6,7 @@ export const FormContext = createContext();
 const formsInitialState = [{ id: 1, fields: [] }];
 
 export const FormProvider = ({ children }) => {
+  localStorage.clear()
   const [forms, setForms] = useState(
     handleSetInitialState("forms", formsInitialState)
   );
@@ -40,15 +41,10 @@ export const FormProvider = ({ children }) => {
     return setForms((currentForms) => {
       return currentForms.map((form, id) => {
         if (id === activePage - 1 || (activePage - 1 === 0 && id === activePage)) {
-          const formWithRemovedField = {
+          return {
             ...form,
             fields: form.fields.filter((_, id) => id !== index),
           }
-          if (formWithRemovedField.fields.length === 0 && activePage > 1) {
-            handleDeleteForm(activePage);
-            handleRemovePage(activePage);
-          }
-          return formWithRemovedField;
         }
         return form;
       });
@@ -94,18 +90,18 @@ export const FormProvider = ({ children }) => {
     return setActivePage((currentActivePage) => currentActivePage = currentActivePage + 1);
   }
 
-  const handleDeleteForm = () => {
+  const handleDeleteForm = async () => {
     if (activePage === 1 && forms.length === 1) {
       return setForms(formsInitialState);
     }
 
     const currentForms = [...forms];
     currentForms.splice(activePage - 1, 1);
-    handleRemovePage();
+    await handleRemovePage();
     return setForms(currentForms);
   };
 
-  const handleRemovePage = () => {
+  const handleRemovePage = async () => {
     if (activePage === 1) {
       return setActivePage(1);
     }
