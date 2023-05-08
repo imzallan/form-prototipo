@@ -1,17 +1,23 @@
+import { useState } from 'react';
 import { Form, Col, Button, } from 'react-bootstrap';
 
-export const FormBuilderBodyLabel = ({ field, index, labelFieldEdit, setLabelFieldEdit, handleEditField }) => {
+import { useFormContext } from '../../../../providers/hooks/useFormContext';
 
-  const labelFieldEditHandleChange = (index) => (e) => {
-    setLabelFieldEdit({
-      id: index,
-    });
+export const FormBuilderBodyLabel = ({
+  field,
+  index,
+}) => {
+  const [openEditLabel, setOpenEditLabel] = useState(false);
+  const { handleEditLabelField } = useFormContext();
+
+  const handleChangeToOpenEditLabel = () => {
+    return setOpenEditLabel(!openEditLabel);
   }
 
   return (
     <>
       {
-        labelFieldEdit?.id === index ? (
+        openEditLabel ? (
           <Form.Group as={Col} className="mb-3" controlId="formLabel">
             <Form.Label column>
               Edit the title field
@@ -19,12 +25,12 @@ export const FormBuilderBodyLabel = ({ field, index, labelFieldEdit, setLabelFie
             <Col sm="10">
               <Form.Control type="text" defaultValue={field.label} />
             </Col>
-            <Button className="ml-3" variant="danger" onClick={labelFieldEditHandleChange(false)}>
+            <Button className="ml-3" variant="danger" onClick={handleChangeToOpenEditLabel}>
               Cancel
             </Button>
             <Button className="ml-3" variant="success" onClick={() => {
-              handleEditField(index);
-              return setLabelFieldEdit(false)
+              handleEditLabelField(index, document.getElementById("formLabel").value);
+              return handleChangeToOpenEditLabel();
             }}>
               Add new title
             </Button>
@@ -32,7 +38,7 @@ export const FormBuilderBodyLabel = ({ field, index, labelFieldEdit, setLabelFie
         ) : (
           <>
             <Form.Label>{field.label}</Form.Label>
-            <Button className="ml-3" variant="primary" onClick={labelFieldEditHandleChange(index)}>
+            <Button className="ml-3" variant="primary" onClick={handleChangeToOpenEditLabel}>
               Edit
             </Button>
           </>

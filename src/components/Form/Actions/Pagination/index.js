@@ -4,11 +4,10 @@ import {
   PaginationLink
 } from "reactstrap";
 
-export const FormPagination = ({
-  forms,
-  activePage,
-  setActivePage
-}) => {
+import { useFormContext } from "../../../../providers/hooks/useFormContext";
+
+export const FormPagination = () => {
+  const { forms, activePage, setActivePage } = useFormContext();
 
   const handlePageChange = (newActivePage) => () => {
     setActivePage(newActivePage)
@@ -16,7 +15,7 @@ export const FormPagination = ({
 
   return (
     <Pagination>
-      {forms.map((form, index) => (
+      {forms?.map((form, index) => (
         <PaginationItem
           key={form.id}
           active={index + 1 === activePage}

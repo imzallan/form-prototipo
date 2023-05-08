@@ -2,11 +2,19 @@ import { Button } from "react-bootstrap";
 
 import { FormInputsType } from "../../../../models/Form/Builder/Input";
 
-export const FormBuilderBodyInputs = ({ field, index, handleRemoveField }) => {
+import { useFormContext } from "../../../../providers/hooks/useFormContext";
+
+export const FormBuilderBodyInputs = ({ field, index }) => {
+  const { handleDeleteField } = useFormContext();
+
   return (
     <>
       {FormInputsType[field.type].html}
-      <Button className="ml-3" variant="danger" onClick={handleRemoveField(index)}>
+      <Button
+        className="ml-3"
+        variant="danger"
+        onClick={() => handleDeleteField(index)}
+      >
         Remove
       </Button>
     </>

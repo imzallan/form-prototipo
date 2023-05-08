@@ -1,41 +1,28 @@
 import { Button } from "reactstrap";
 
-export const ButtonDeleteForm = ({
-  forms,
-  setForms,
-  activePage,
-  setActivePage
-}) => {
+import { useFormContext } from "../../../../providers/hooks/useFormContext";
 
-  const handleRemoveForm = async (activePage) => {
-    const currentForms = [...forms];
-    currentForms.splice(activePage - 1, 1);
-    await setForms(currentForms);
-  };
+export const ButtonDeleteForm = () => {
+  const {
+    handleDeleteForm,
+    forms,
+  } = useFormContext();
 
-  const handleRemovePage = async (activePage) => {
-    if (activePage === 1) {
-      return setActivePage(1);
+  const handleButttonDisabled = () => {
+    if (forms[0]?.fields?.length === 0 && forms.length === 1) {
+      return true;
     }
 
-    await setActivePage((currentActivePage) => currentActivePage = currentActivePage - 1);
+    return false;
   }
 
   return (
-    <>
-      {
-        forms.length > 1 ? (
-          <Button
-            onClick={async () => {
-              await handleRemoveForm(activePage);
-              await handleRemovePage(activePage);
-            }}
-          >
-            Remove Form
-          </Button>
-        ) : null
-      }
-    </>
+    <Button
+      disabled={handleButttonDisabled()}
+      color={handleButttonDisabled() ? "secondary" : "danger"}
+      onClick={() => handleDeleteForm()}
+    >
+      Remove Form
+    </Button>
   )
-
 }

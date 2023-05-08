@@ -4,10 +4,13 @@ import App from './App';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import { FormProvider } from './providers/contexts/FormContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <FormProvider>
+      <App />
+    </FormProvider>
   </React.StrictMode>
 );
