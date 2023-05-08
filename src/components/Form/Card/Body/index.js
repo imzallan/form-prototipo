@@ -1,15 +1,12 @@
 import {
   CardBody,
 } from "reactstrap";
+import { FormBuilder } from "../../Builder";
 
-const RenderForm = ({ formIndex, forms }) => {
-  return forms[formIndex]?.form;
-};
-
-export const FormCardBody = ({ forms, activePage }) => {
+export const FormCardBody = () => {
   return (
     <CardBody>
-      <RenderForm forms={forms} formIndex={activePage - 1} />
+      <FormBuilder />
     </CardBody>
   );
 }
